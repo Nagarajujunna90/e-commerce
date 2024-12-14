@@ -1,0 +1,17 @@
+server:
+  port: 9095
+spring:
+  application:
+     name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+       - id: product-service
+         uri: http://localhost:9091
+         predicates:
+          - Path=/product/v1/**
+       - id: order-service
+         uri: http://localhost:9092
+         predicates:
+           - Path= /order/v1/**

@@ -8,9 +8,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 
-@Setter
-@Getter
-@ToString
+@Data
 @Entity
 @Table(name = "product")
 public class Product {

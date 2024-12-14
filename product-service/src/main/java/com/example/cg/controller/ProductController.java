@@ -9,25 +9,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
+@RequestMapping(value = "/product/v1")
 public class ProductController {
 
     @Autowired
     ProductService productService;
 
     @PostMapping("/product")
-    public ResponseEntity<Product> addProduct(@RequestBody ProductDTO productDTO) {
-        Product product = new Product();
-        System.out.println(productDTO);
-        productService.addProduct(product);
-        return new ResponseEntity<>(new Product(), HttpStatus.OK);
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        Product savedRecords = productService.addProduct(product);
+        return new ResponseEntity<>(savedRecords, HttpStatus.OK);
     }
 
     @PutMapping(value = "/product/{productId}")
     public ResponseEntity<Product> updateProduct(@PathVariable("productId") Integer productId, @RequestBody Product product) {
-        System.out.println(productId+""+product);
-        productService.updateProduct(productId, product);
-        return new ResponseEntity<>(new Product(), HttpStatus.OK);
+        Product updateProduct = productService.updateProduct(productId, product);
+        return new ResponseEntity<>(updateProduct, HttpStatus.OK);
 
     }
 
@@ -39,7 +38,6 @@ public class ProductController {
 
     @GetMapping(value = "/product/{productId}")
     public ResponseEntity<Product> findProductById(@PathVariable("productId") Integer productId) {
-        System.out.println(productId);
         Product productById = productService.findProductById(productId);
         return new ResponseEntity<>(productById, HttpStatus.OK);
     }
