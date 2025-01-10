@@ -17,6 +17,7 @@ public class ProductOrder {
     private LocalDateTime orderedTime;
     private String orderedBy;
     private String address;
+    private Double productPrice;
 
 }
 

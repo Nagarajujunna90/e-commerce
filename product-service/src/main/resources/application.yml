@@ -12,7 +12,7 @@ spring:
     password: root
   jpa:
     hibernate:
-      ddlAuto: update
+      ddlAuto: create-drop
     showSql: true
 
   mail:
