@@ -2,6 +2,8 @@ server:
   port: 9091
 
 spring:
+#  profiles:
+#    active: local
   application:
     name: product-service
   datasource:
@@ -13,8 +15,47 @@ spring:
       ddlAuto: update
     showSql: true
 
-eureka:
-  client:
-    serviceUrl:
-      "default": http://localhost:8761/eureka
+  mail:
+   host: smtp.gmail.com
+   port: 587
+   username: nagarajujunna90@gmail.com
+   password: xidd itss ugzj werm
+   properties:
+    mail:
+       smtp.auth: true
+       starttls.enable: true
+
+
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        allow:
+          auto:
+            create:
+              topics: true
+    topic:
+      createProduct: create-product
+
+
+#      updateProduct: update-product
+#      deleteProduct: delete-product
+#      getAllProducts: all-products
+#      deleteByIdProduct: delete-product-by-id
+
+    consumer:
+      group-id: product-group
+      bootstrap-servers: localhost:9092
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      "default": http://localhost:8761/eureka
 
