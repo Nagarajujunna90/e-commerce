@@ -16,11 +16,10 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepo productRepo;
 
-    @Value("${spring.kafka.topic.create-product}")
+    @Value("${spring.kafka.topic.update-product}")
     private String createProduct;
 
     @Autowired(required = false)
-
     KafkaTemplate kafkaTemplate;
 
     @Autowired
@@ -32,12 +31,6 @@ public class ProductServiceImpl implements ProductService {
         kafkaTemplate.send(createProduct, product1);
         //  kafkaTemplate.send("medium-events", product1);
         return product1;
-    }
-
-    @KafkaListener(topics = "create-product",
-            groupId = "product-group")
-    public void consume(Product message) {
-        System.out.println("Message received -> %s" + message);
     }
 
     @Transactional
@@ -64,9 +57,12 @@ public class ProductServiceImpl implements ProductService {
         return productRepo.findAll();
     }
 
-    @KafkaListener(topics = "medium-events", groupId = "my-group-id")
-    public void listen(Product message) {
-        System.out.println("Received message:==== " + message);
+    @Value("${spring.kafka.consumer.group-id}")
+    private String groupId;
+
+    @KafkaListener(topics = "create-product",groupId ="product-group")
+    public void consume(Product message) {
+        System.out.println("Message received -> %s" + message);
     }
 
 

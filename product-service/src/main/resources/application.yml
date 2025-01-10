@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: local
+    actives: local
   application:
     name: product-service
   datasource:
@@ -27,9 +27,9 @@ spring:
 
   kafka:
     producer:
-#      bootstrap-servers: localhost:9092
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      bootstrap-servers: localhost:9092
+      key-serializer:   org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         allow:
           auto:
@@ -46,12 +46,11 @@ spring:
       group-id: product-group
       bootstrap-servers: localhost:9092
       auto-offset-reset: earliest
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer:   org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
 
-eureka:
-  client:
-    serviceUrl:
-      "default": http://localhost:8761/eureka
-
+#eureka:
+#  client:
+#    serviceUrl:
+#      "default": http://localhost:8761/eureka
