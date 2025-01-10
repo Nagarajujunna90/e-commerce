@@ -5,9 +5,9 @@ spring:
   application:
     name: product-service
   datasource:
-    url: jdbc:mysql://host.docker.internal:3306/e-product
-    username: root
-    password: root
+    url: jdbc:mysql://employeedb.crmuy6se4h6v.us-east-1.rds.amazonaws.com:3306/e-product
+    username: admin
+    password: Prashanth1234
   jpa:
     hibernate:
       ddlAuto: update
