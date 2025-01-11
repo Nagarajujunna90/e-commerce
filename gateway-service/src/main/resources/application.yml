@@ -1,5 +1,10 @@
 server:
-  port: 9095
+  port: 8787
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,env,configprops,metrics
 spring:
   application:
      name: gateway-service
@@ -7,8 +12,13 @@ spring:
   cloud:
     gateway:
       routes:
+       - id: customer-service
+         uri: http://localhost:7070
+         predicates:
+           - Path= /user/v1/**
+
        - id: product-service
-         uri: http://localhost:9091
+         uri: http://localhost:7071
          predicates:
           - Path=/product/v1/**
          filters:
@@ -16,10 +26,21 @@ spring:
              args:
                name: myCircuitBreaker
                fallbackUri: forward:/productServiceFallBack
+
        - id: order-service
-         uri: http://localhost:9092
+         uri: http://localhost:7072
          predicates:
            - Path= /order/v1/**
+         filters:
+           - name: CircuitBreaker
+             args:
+               name: myCircuitBreaker
+               fallbackUri: forward:/orderServiceFallBack
+
+       - id: payment-service
+         uri: http://localhost:7073
+         predicates:
+           - Path= /payment/v1/**
 
 resilience4j.circuitbreaker:
   configs:

@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,9 +17,14 @@ public class GatewayServiceApplication {
 		SpringApplication.run(GatewayServiceApplication.class, args);
 	}
 
-	@GetMapping("/productServiceFallBack")
+	@RequestMapping("/productServiceFallBack")
 	public ResponseEntity<String> userServiceFallBack(){
 
-		return new ResponseEntity<>("Product service is down", HttpStatusCode.valueOf(HttpStatus.SC_INTERNAL_SERVER_ERROR));
+		return new ResponseEntity<>("Product service is down", HttpStatusCode.valueOf(HttpStatus.SC_SERVICE_UNAVAILABLE));
+	}
+	@RequestMapping("/orderServiceFallBack")
+	public ResponseEntity<String> orderServiceFallBack(){
+
+		return new ResponseEntity<>("Order service is down", HttpStatusCode.valueOf(HttpStatus.SC_SERVICE_UNAVAILABLE));
 	}
 }
