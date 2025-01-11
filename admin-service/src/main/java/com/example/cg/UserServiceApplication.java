@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(description = "customer-service API",version = "v1",title = "customer-service"))
+@OpenAPIDefinition(info = @Info(title = "customer-service",description = "customer-service API",version = "v1"))
 public class UserServiceApplication {
 
 	public static void main(String[] args) {

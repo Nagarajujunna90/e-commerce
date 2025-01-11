@@ -1,6 +1,12 @@
 server:
   port: 7071
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,env,configprops,metrics
+
 spring:
   profiles:
     actives: local

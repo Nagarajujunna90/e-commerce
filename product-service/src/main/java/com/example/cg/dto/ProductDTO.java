@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@ToString
 public class ProductDTO {
     @JsonProperty(value = "id")
     private Integer id;
@@ -18,38 +17,4 @@ public class ProductDTO {
     private Double price;
     private LocalDate manufacturedDate;
     private String retailer;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductDTO{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", price=" + price +
-                '}';
-    }
 }

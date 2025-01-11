@@ -1,5 +1,10 @@
 server:
   port: 7073
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,env,configprops,metrics
 
 spring:
   application:
