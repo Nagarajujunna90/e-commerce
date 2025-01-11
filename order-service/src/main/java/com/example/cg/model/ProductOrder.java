@@ -1,6 +1,5 @@
 package com.example.cg.model;
 
-import com.example.cg.dto.UserResponse;
 import jakarta.persistence.*;
 import lombok.Data;
 
