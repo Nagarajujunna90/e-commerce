@@ -1,10 +1,10 @@
 payment-service:
-  url: http://localhost:9093
-  create-payment: createPayment
+  url: http://host.docker.internal:7073/payment/v1
+  create-payment: /payment/pay
 
 
 server:
-  port: 9092
+  port: 7072
 spring:
   application:
     name: order-service

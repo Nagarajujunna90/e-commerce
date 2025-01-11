@@ -1,22 +1,24 @@
 package com.example.cg.entity;
 
+import com.example.cg.dto.PaymentMode;
+import com.example.cg.dto.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table
-public class PaymentRequest {
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer paymentId;
-    private String status;
+    private PaymentStatus status;
     private LocalDateTime paymentDateTime;
-    private String paymentMode;
+    private PaymentMode paymentMode;
     private Double paidAmount;
+    private Integer orderId;
 
 
 }

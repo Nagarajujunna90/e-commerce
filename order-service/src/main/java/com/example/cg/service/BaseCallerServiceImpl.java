@@ -1,8 +1,10 @@
 package com.example.cg.service;
 
 
+import com.example.cg.dto.UserResponse;
 import com.example.cg.model.PaymentRequest;
 import com.example.cg.model.PaymentResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,6 +17,7 @@ import java.net.http.HttpHeaders;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class BaseCallerServiceImpl {
 
@@ -28,10 +31,17 @@ public class BaseCallerServiceImpl {
     RestTemplate restTemplate;
 
     public PaymentResponse paymentRequest(PaymentRequest paymentRequest) {
+        log.info("Inside basecallerserviceImpl ----" + paymentRequest + paymentUrl + paymentCreate);
         final Map<String, String> inputHeaders = new HashMap<>();
         HttpHeaders headers = createHttpHeaders(inputHeaders);
         HttpEntity<PaymentRequest> entityRequest = new HttpEntity<>(paymentRequest);
         ResponseEntity<PaymentResponse> responseEntity = restTemplate.exchange(paymentUrl + paymentCreate, HttpMethod.POST, entityRequest, PaymentResponse.class);
+        return responseEntity.getBody();
+    }
+
+    public UserResponse getUserDetails(Integer userId) {
+        log.info("Inside user call");
+        ResponseEntity<UserResponse> responseEntity = restTemplate.getForEntity("http://localhost:7070/user/v1/user/" + userId, UserResponse.class);
         return responseEntity.getBody();
     }
 

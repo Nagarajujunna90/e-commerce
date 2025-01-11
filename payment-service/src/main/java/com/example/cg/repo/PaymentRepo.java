@@ -1,7 +1,9 @@
 package com.example.cg.repo;
 
-import com.example.cg.entity.PaymentRequest;
+import com.example.cg.entity.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PaymentRepo extends JpaRepository<PaymentRequest,Integer> {
+@Repository
+public interface PaymentRepo extends JpaRepository<Payment,Integer> {
 }

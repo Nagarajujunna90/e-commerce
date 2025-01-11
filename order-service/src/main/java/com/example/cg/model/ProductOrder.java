@@ -1,5 +1,6 @@
 package com.example.cg.model;
 
+import com.example.cg.dto.UserResponse;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,7 +10,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "productOrder")
 public class ProductOrder {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -17,8 +17,8 @@ public class PaymentController {
 
     @PostMapping("/payment/pay")
     public ResponseEntity<PaymentResponse> makePayment(@RequestBody PaymentRequestDTO paymentRequestDTO) {
-        paymentService.makePayment(paymentRequestDTO);
-        return null;
+        PaymentResponse paymentResponse = paymentService.makePayment(paymentRequestDTO);
+        return new ResponseEntity<>(paymentResponse,HttpStatus.OK);
     }
 
     @PostMapping("/payment/{paymentId}")
